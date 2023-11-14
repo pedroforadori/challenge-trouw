@@ -15,7 +15,7 @@ import { api } from "../api";
 export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   function handleCreate() {
     const validate = {
@@ -23,7 +23,7 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
     };
 
     if (validate) {
-      setIsLoading(true)
+      setIsLoading(true);
       api
         .post("/todolist", {
           title: title,
@@ -31,7 +31,7 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
           status: "PENDENTE",
         })
         .finally(() => {
-          setIsLoading(false)
+          setIsLoading(false);
           handleClose();
         });
     }
@@ -74,7 +74,10 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
             className="bg-custom-purple px-2 py-3 w-28 items-center rounded"
             onPress={handleCreate}
           >
-            <Text className="text-custom-white text-xl">Criar {isLoading && <ActivityIndicator className="text-custom-white" />}</Text>
+            <Text className="text-custom-white text-xl">
+              Criar{" "}
+              {isLoading && <ActivityIndicator className="text-custom-white" />}
+            </Text>
           </Pressable>
         </View>
       </View>
