@@ -21,7 +21,10 @@ import CardTask from "../components/cardTask";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { data: tasks, isFetching } = useFetch<TaskType[]>("/todolist");
+  const { data: task, isFetching } = useFetch<TaskType[]>("/todolist");
+  // const [ task, setTask ] = useState<TaskType[]>([])
+
+  const taskFilter = task?.filter((item) => item.deleted === false);
 
   function handleTask() {
     setModalVisible(true);
@@ -35,16 +38,20 @@ export default function Home() {
     return <CardTask {...item} />;
   }
 
+  function handleEdit({ item }: ListRenderItemInfo<TaskType>) {
+    setModalVisible(true);
+  }
+
   return (
     <View className="flex-1 items-center justify-around bg-custom-black">
-      {isFetching && <ActivityIndicator size="large"/>}
-      {tasks ? (
+      {isFetching && <ActivityIndicator size="large" />}
+      {taskFilter ? (
         <SafeAreaView className="h-[80%] w-11/12 mt-10">
-          <FlatList
-            data={tasks}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.listId}
-          />
+            <FlatList
+              data={taskFilter}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.listId}
+            />
         </SafeAreaView>
       ) : (
         <View className="gap-3">
