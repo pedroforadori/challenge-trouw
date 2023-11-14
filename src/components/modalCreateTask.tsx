@@ -7,9 +7,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { ModalCreateTaskType } from "../screens/modalCreateTask";
-
-// import { Container } from './styles';
+import { ModalCreateTaskType } from "../type/modalCreateTask";
 
 export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
   return (
