@@ -24,7 +24,7 @@ export default function Home() {
   const { data: task, isFetching } = useFetch<TaskType[]>("/todolist");
   // const [ task, setTask ] = useState<TaskType[]>([])
 
-  const taskFilter = task?.filter((item) => item.deleted === false);
+  const taskFilter = task?.filter((item) => item.deleted === false)
 
   function handleTask() {
     setModalVisible(true);
@@ -48,9 +48,10 @@ export default function Home() {
       {taskFilter ? (
         <SafeAreaView className="h-[80%] w-11/12 mt-10">
             <FlatList
-              data={taskFilter}
+              data={taskFilter.reverse()}
               renderItem={renderItem}
               keyExtractor={(item) => item.listId}
+              
             />
         </SafeAreaView>
       ) : (
