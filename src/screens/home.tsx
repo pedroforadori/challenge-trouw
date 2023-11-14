@@ -10,6 +10,11 @@ export default function Home() {
   function handleTask() {
     setModalVisible(true)
   }
+
+  function handleClose() {
+    setModalVisible(false)
+  }
+
   return (
     <View className="flex-1 items-center justify-around bg-custom-black">
       <View className="gap-3">
@@ -23,7 +28,7 @@ export default function Home() {
       </View>
       <ButtonPlus handleTask={handleTask}>+</ButtonPlus>
       <Modal visible={modalVisible} animationType="fade" transparent={true}>
-        <ModalCreateTask />
+        <ModalCreateTask handleClose={handleClose}/>
       </Modal>
     </View>
   );

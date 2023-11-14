@@ -14,7 +14,8 @@ module.exports = {
       'custom-black': '#121212',
       'custom-black-secundary': '#363636',
       'custom-purple': '#8687E7',
-      'custom-white': '#fafafa'
+      'custom-white': '#fafafa',
+      'custom-fade': 'rgba(24, 24, 24, 0.6)'
     }
   }
 }
