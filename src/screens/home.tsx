@@ -10,6 +10,7 @@ import {
   SafeAreaView,
   Touchable,
   ListRenderItemInfo,
+  ActivityIndicator,
 } from "react-native";
 import ButtonPlus from "../components/buttonPlus";
 import { useState } from "react";
@@ -20,9 +21,7 @@ import CardTask from "../components/cardTask";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
-  const { data: tasks } = useFetch<TaskType[]>(
-    "https://todolist.trouw.com.br/todolist"
-  );
+  const { data: tasks, isFetching } = useFetch<TaskType[]>("/todolist");
 
   function handleTask() {
     setModalVisible(true);
@@ -38,6 +37,7 @@ export default function Home() {
 
   return (
     <View className="flex-1 items-center justify-around bg-custom-black">
+      {isFetching && <ActivityIndicator size="large"/>}
       {tasks ? (
         <SafeAreaView className="h-[80%] w-11/12 mt-10">
           <FlatList
