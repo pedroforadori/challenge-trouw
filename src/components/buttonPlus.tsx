@@ -4,7 +4,7 @@ import { ButtonType } from "../type/button";
 
 export default function ButtonPlus({children, handleTask} : ButtonType) {
   return (
-    <View className='bg-custom-purple rounded-full text-2xl'>
+    <View className='bg-custom-purple rounded-full text-2xl mb-10'>
       <Pressable onPress={handleTask}>
         <Text className='text-custom-white text-4xl p-5 px-7'>{children}</Text>
       </Pressable>
