@@ -16,13 +16,14 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false)
 
   function handleCreate() {
     const validate = {
       validateCountCaracterer: validateCountCaracterer(title, description),
     };
-
-    if (validate) {
+    
+    if (validate["validateCountCaracterer"]) {
       setIsLoading(true);
       api
         .post("/todolist", {
@@ -34,11 +35,13 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
           setIsLoading(false);
           handleClose();
         });
+    } else {
+      setError(true)
     }
   }
 
   function validateCountCaracterer(title: string, description: string) {
-    return title.length >= 5 && description.length >= 5;
+    return title.length >= 5 || description.length >= 5;
   }
 
   return (
@@ -55,7 +58,6 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
           className="placeholder-custom-white max-h-10"
           placeholderTextColor="#fafafa"
           autoFocus
-          multiline
           value={title}
           onChangeText={setTitle}
         />
@@ -65,7 +67,9 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
           placeholderTextColor="#fafafa"
           value={description}
           onChangeText={setDescription}
+          multiline
         />
+        {error && <Text className="text-[#ae3636] text-xl">Texto muito curto.</Text>}
         <View className="flex-row justify-around items-center w-full py-10">
           <Pressable className=" text-custom-purple" onPress={handleClose}>
             <Text className="text-custom-purple text-xl">Cancel</Text>
