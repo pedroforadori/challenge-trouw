@@ -1,5 +1,5 @@
 export type TaskType = {
-    listId: string;
+    list_id: string;
     title: string;
     description: string;
     status: string;

@@ -11,6 +11,7 @@ import {
 import { ModalCreateTaskType } from "../type/modalCreateTask";
 import { useState } from "react";
 import { api } from "../api";
+import ButtonPrimary from "./buttonPrimary";
 
 export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
   const [title, setTitle] = useState("");
@@ -22,8 +23,8 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
     const validate = {
       validateCountCaracterer: validateCountCaracterer(title, description),
     };
-    
-    if (validate["validateCountCaracterer"]) {
+    console.log(validate["validateCountCaracterer"])
+    if (!validate["validateCountCaracterer"]) {
       setIsLoading(true);
       api
         .post("/todolist", {
@@ -41,7 +42,7 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
   }
 
   function validateCountCaracterer(title: string, description: string) {
-    return title.length >= 5 || description.length >= 5;
+    return title.length < 5 || description.length < 5;
   }
 
   return (
@@ -74,15 +75,7 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
           <Pressable className=" text-custom-purple" onPress={handleClose}>
             <Text className="text-custom-purple text-xl">Cancel</Text>
           </Pressable>
-          <Pressable
-            className="bg-custom-purple px-2 py-3 w-28 items-center rounded"
-            onPress={handleCreate}
-          >
-            <Text className="text-custom-white text-xl">
-              Criar{" "}
-              {isLoading && <ActivityIndicator className="text-custom-white" />}
-            </Text>
-          </Pressable>
+          <ButtonPrimary handleClick={handleCreate} isLoading={isLoading} width="w-28"> Criar </ButtonPrimary>
         </View>
       </View>
     </KeyboardAvoidingView>

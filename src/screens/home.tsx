@@ -1,14 +1,10 @@
-import { StatusBar } from "expo-status-bar";
 import {
   Image,
-  Pressable,
   Text,
   View,
   Modal,
-  ScrollView,
   FlatList,
   SafeAreaView,
-  Touchable,
   ListRenderItemInfo,
   ActivityIndicator,
 } from "react-native";
@@ -22,8 +18,6 @@ import CardTask from "../components/cardTask";
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const { data: task, isFetching } = useFetch<TaskType[]>("/todolist");
-  // const [ task, setTask ] = useState<TaskType[]>([])
-
   const taskFilter = task?.filter((item) => item.deleted === false)
 
   function handleTask() {
@@ -38,10 +32,6 @@ export default function Home() {
     return <CardTask {...item} />;
   }
 
-  function handleEdit({ item }: ListRenderItemInfo<TaskType>) {
-    setModalVisible(true);
-  }
-
   return (
     <View className="flex-1 items-center justify-around bg-custom-black">
       {isFetching && <ActivityIndicator size="large" />}
@@ -50,7 +40,7 @@ export default function Home() {
             <FlatList
               data={taskFilter.reverse()}
               renderItem={renderItem}
-              keyExtractor={(item) => item.listId}
+              keyExtractor={(item) => item.list_id}
               
             />
         </SafeAreaView>
