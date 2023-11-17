@@ -22,7 +22,7 @@ npx expo start
 
 Após a execuçao, com o aplicativo do expo go instalado em seu celular, faça a leitura do QR Code. Caso queira, poderá rodar direto do emulador instalado em sua propria maquina.
 
-Voce tambem podera testar baixando o .apk
+Voce tambem podera testar baixando o .apk https://expo.dev/artifacts/eas/tSCNdcELgpKbhfCRbpoCMg.apk
 
 ## Estrutura do projeto(folder):
 - api: defindo com axios a url padrao do projeto para acessar o backend
