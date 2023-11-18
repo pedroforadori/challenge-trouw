@@ -23,7 +23,6 @@ export default function ModalCreateTask({ handleClose }: ModalCreateTaskType) {
     const validate = {
       validateCountCaracterer: validateCountCaracterer(title, description),
     };
-    console.log(validate["validateCountCaracterer"])
     if (!validate["validateCountCaracterer"]) {
       setIsLoading(true);
       api

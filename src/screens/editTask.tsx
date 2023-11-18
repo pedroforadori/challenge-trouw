@@ -99,10 +99,10 @@ export default function EditTask({ route }: ParamsType) {
           onChangeText={setDescription}
         />
         <View className="text-custom-white flex-row gap-3">
-          {options.map((item) => (
+          {options.map((item, index) => (
             <Pressable onPress={() => handleStatus(listIdParam, item.value)}>
               <Text
-                key={item.label}
+                key={index}
                 className={`text-custom-white ${
                   status === item.value
                     ? "bg-custom-purple"
