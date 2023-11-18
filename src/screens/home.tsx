@@ -42,7 +42,7 @@ export default function Home() {
       />
       {isFetching && <ActivityIndicator size="large" />}
       {taskFilter ? (
-        <SafeAreaView className="h-[80%] w-11/12 mt-10">
+        <SafeAreaView className="h-[85%] w-11/12 mt-10">
           <FlatList
             data={taskFilter.reverse()}
             renderItem={renderItem}
